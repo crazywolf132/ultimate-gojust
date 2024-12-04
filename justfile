@@ -184,7 +184,7 @@ run: build
 dev: deps
     #!/usr/bin/env bash
     if [ ! -f ".air.toml" ]; then
-        curl -sL https://raw.githubusercontent.com/cosmtrek/air/master/air.conf.example > .air.toml
+        curl -sL https://raw.githubusercontent.com/air-verse/air/refs/heads/master/air_example.toml > .air.toml
     fi
     {{gobin}}/air -c .air.toml
 
