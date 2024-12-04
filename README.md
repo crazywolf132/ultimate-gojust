@@ -42,7 +42,7 @@ winget install just
 
 2. Copy the justfile to your project root:
 ```bash
-curl -O https://raw.githubusercontent.com/yourusername/ultimate-gojust/main/justfile
+curl -O https://raw.githubusercontent.com/crazywolf132/ultimate-gojust/main/justfile
 ```
 
 3. Initialize your project:
