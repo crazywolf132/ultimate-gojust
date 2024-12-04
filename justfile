@@ -159,7 +159,7 @@ deps:
     {{go}} install mvdan.cc/gofumpt@latest
     {{go}} install golang.org/x/vuln/cmd/govulncheck@latest
     {{go}} install github.com/golang/mock/mockgen@latest
-    {{go}} install github.com/cosmtrek/air@latest
+    {{go}} install github.com/air-verse/air@latest
 
 # Update all project dependencies to their latest versions
 deps-update:
