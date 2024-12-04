@@ -122,7 +122,7 @@ export DATABASE_URL := env_var_or_default("DATABASE_URL", "")
 init:
     #!/usr/bin/env bash
     if [ ! -f "go.mod" ]; then
-        {{go}} mod init $(basename $(pwd))
+        {{go}} mod init "$(basename "$(pwd)")"
     fi
     if [ ! -f ".env" ]; then
         echo "# Project Configuration" > .env
@@ -138,17 +138,19 @@ init:
         testdata \
         .github/workflows
     if [ ! -f "main/main.go" ]; then
-        cat > main/main.go << 'EOF'
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, World!")
-}
-EOF
+        mkdir -p main
+        printf '%s\n' \
+            'package main' \
+            '' \
+            'import "fmt"' \
+            '' \
+            'func main() {' \
+            '    fmt.Println("Hello, World!")' \
+            '}' \
+            > main/main.go
     fi
     just deps
+
 
 # Install all required development tools and dependencies
 deps:
@@ -248,8 +250,8 @@ build-all:
         output="{{dist_dir}}/{{project_name}}-${os}-${arch}$([ "$os" = "windows" ] && echo ".exe")"
         
         GOOS=$os GOARCH=$arch $([ "$arm" != "-" ] && echo "GOARM=$arm") \
-        CGO_ENABLED={{cgo_enabled}} {{go}} build \
-            -tags '{{ALL_TAGS}}' \
+        CGO_ENABLED={{CGO_ENABLED}} {{go}} build \
+            -tags '{{all_tags}}' \
             -ldflags '{{ld_flags}}' \
             -o "$output" \
             ./main
