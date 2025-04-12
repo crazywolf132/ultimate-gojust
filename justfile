@@ -35,6 +35,7 @@ alias t := test
 alias b := build
 alias r := run
 alias d := dev
+alias help := default
 
 # =============================================================================
 # Variables
